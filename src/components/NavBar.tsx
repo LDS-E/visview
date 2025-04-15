@@ -23,13 +23,16 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/about" className="hover:text-accent">
+            <Link href="/about" className="hover:text-secondary transition">
               About
             </Link>
           </li>
           <li>
-            <Link href="/blog" className="hover:text-accent">
-              Blog
+            <Link
+              href="/newsletter"
+              className="hover:text-secondary transition"
+            >
+              Newsletter
             </Link>
           </li>
         </ul>
