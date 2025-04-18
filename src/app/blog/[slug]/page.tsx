@@ -1,52 +1,44 @@
 import { notFound } from "next/navigation";
+import { fetchPosts } from "@/lib/contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Image from "next/image";
 
-const posts = [
-  {
-    slug: "exploring-motherhood",
-    title: "Exploring Motherhood",
-    date: "April 8, 2025",
-    content: "A deep dive into the joys and challenges of motherhood...",
-  },
-  {
-    slug: "living-a-balanced-life",
-    title: "Living a Balanced Life",
-    date: "March 25, 2025",
-    content: "How to juggle career, personal life, and motherhood...",
-  },
-  {
-    slug: "self-care-for-busy-moms",
-    title: "Self-Care for Busy Moms",
-    date: "March 15, 2025",
-    content: "Tips and strategies for prioritizing self-care...",
-  },
-];
-
-type Post = {
-  title: string;
-  date: string;
-  content: string;
-  slug: string;
-};
-
-type PostPageProps = {
+type Props = {
   params: {
     slug: string;
   };
 };
 
-export default function PostPage({ params }: PostPageProps) {
-  const post = posts.find((post) => post.slug === params.slug);
+export default async function PostPage({ params }: Props) {
+  const posts = await fetchPosts();
 
-  if (!post) {
-    notFound();
-  }
+  const post = posts.find((post: any) => post.fields.slug === params.slug);
+
+  if (!post) return notFound();
+
+  const coverImageUrl = post.fields.coverImage?.fields?.file?.url;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-secondary">{post.title}</h1>
-      <p className="text-xl text-accent">{post.date}</p>
-      <div className="mt-6">
-        <p>{post.content}</p>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold text-secondary mb-4">
+        {post.fields.title}
+      </h1>
+      <p className="text-accent mb-2">{post.fields.excerpt}</p>
+
+      {coverImageUrl && (
+        <div className="my-6">
+          <Image
+            src={`https:${coverImageUrl}`}
+            alt={post.fields.title}
+            width={800}
+            height={400}
+            layout="responsive"
+          />
+        </div>
+      )}
+
+      <div className="prose prose-lg mt-6">
+        {documentToReactComponents(post.fields.content)}
       </div>
     </div>
   );

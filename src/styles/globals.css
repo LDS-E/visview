@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffcfa; /* Fundo claro */
-  --foreground: #333333; /* Texto escuro */
-  --primary: #dda9b5; /* Rosado */
-  --secondary: #b5c9b3; /* Verde oliva claro */
-  --accent: #f4e3cf; /* Areia/bege */
+  --background: #fffcfa;
+  --foreground: #333333;
+  --primary: #dda9b5;
+  --secondary: #b5c9b3;
+  --accent: #f4e3cf;
 }
 
 @theme inline {
@@ -18,8 +18,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a; /* Fundo escuro para o tema escuro */
-    --foreground: #ededed; /* Texto claro para o tema escuro */
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 

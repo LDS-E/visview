@@ -1,20 +1,13 @@
-interface PostCardProps {
+type PostCardProps = {
   title: string;
-  date: string;
-  description: string;
-  slug: string;
-}
-
-const PostCard = ({ title, date, description, slug }: PostCardProps) => {
-  return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer">
-      <div className="p-6">
-        <h2 className="text-xl font-semibold text-secondary mb-2">{title}</h2>
-        <p className="text-sm text-gray-500 mb-4">{date}</p>
-        <p className="text-gray-700">{description}</p>
-      </div>
-    </div>
-  );
+  excerpt: string;
 };
 
-export default PostCard;
+export default function PostCard({ title, excerpt }: PostCardProps) {
+  return (
+    <div className="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition min-h-[220px] flex flex-col justify-between">
+      <h3 className="text-xl font-semibold text-primary mb-2">{title}</h3>
+      <p className="text-gray-600">{excerpt}</p>
+    </div>
+  );
+}
