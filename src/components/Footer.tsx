@@ -17,7 +17,7 @@ export default function Footer() {
           </Link>
         </div>
         <p className="text-white text-sm">
-          © 2025 VisView. All rights reserved.
+          © 2025 VisView. All rights reserveddd.
         </p>
       </div>
     </footer>
