@@ -3,6 +3,7 @@ import Image from "next/image";
 import { fetchPosts } from "@/lib/contentful";
 import PostCard from "../components/PostCard";
 import FeaturedPost from "@/components/FeaturedPost";
+import CategorySection from "@/components/CategorySection";
 
 export default async function HomePage() {
   const posts = await fetchPosts();
@@ -59,6 +60,9 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+      <section>
+        <CategorySection />
       </section>
     </div>
   );
