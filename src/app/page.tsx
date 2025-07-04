@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchPosts } from "@/lib/contentful";
 import PostCard from "../components/PostCard";
+import FeaturedPost from "@/components/FeaturedPost";
 
 export default async function HomePage() {
   const posts = await fetchPosts();
@@ -31,6 +32,14 @@ export default async function HomePage() {
             Subscribe to Newsletter
           </Link>
         </div>
+      </section>
+      <section>
+        <FeaturedPost
+          title="featured post"
+          excerpt="Important post of the month"
+          slug="first-steps-into-motherhood"
+          imageUrl="/images/sample1.jpg"
+        />
       </section>
 
       <section className="bg-lightBg py-12">
