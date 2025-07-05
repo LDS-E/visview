@@ -35,6 +35,11 @@ export default function Navbar() {
               Newsletter
             </Link>
           </li>
+          <li>
+            <Link href="/posts" className="hover:text-secondary transition">
+              All Posts
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
