@@ -21,7 +21,7 @@ export default function FeaturedPost({
       <div className="grid md:grid-cols-2 gap-6">
         <div className="relative h-72 md:h-auto">
           <Image
-            src={imageUrl}
+            src="/images/motherhood.webp"
             alt={title}
             fill
             className="object-cover"
