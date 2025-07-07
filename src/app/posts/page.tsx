@@ -16,11 +16,11 @@ export default async function AllPostsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post: any) => (
           <Link key={post.sys.id} href={`/blog/${post.fields.slug}`}>
-            <div className="bg-white p-6 rounded-xl shadow hover:shadow-md transition cursor-pointer">
+            <div className="bg-white p-6 rounded-xl shadow hover:shadow-md transition cursor-pointer min-h-[250px] flex flex-col justify-evenly">
               <h2 className="text-xl font-semibold text-primary mb-2">
                 {post.fields.title}
               </h2>
-              <p className="text-accent">
+              <p className="text-accent line-clamp-3">
                 {post.fields.excerpt || "No summary available."}
               </p>
             </div>
