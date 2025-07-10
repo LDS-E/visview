@@ -33,7 +33,7 @@ export default function FeaturedPost({
           <p className="text-accent mb-4">{excerpt}</p>
           <Link href={`/blog/${slug}`}>
             <span className="inline-block bg-primary text-white py-2 px-4 rounded hover:bg-secondary transition">
-              Leia mais
+              Read more
             </span>
           </Link>
         </div>
