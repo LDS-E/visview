@@ -37,7 +37,7 @@ const categories: Category[] = [
 
 export default function CategorySection() {
   return (
-    <div className="py-12 bg-[#fefefc]">
+    <div className="py-12">
       <h2 className="text-center text-3xl font-bold text-secondary mb-8">
         Explore by Category
       </h2>
