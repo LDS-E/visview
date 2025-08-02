@@ -3,9 +3,10 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary py-3 sm:py-4 text-center">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex-shrink-0 mr-4">
+    <footer className="bg-secondary py-4 text-white relative">
+      <div className="container mx-auto px-4 flex items-center relative">
+        {/* Logo alinhado à esquerda */}
+        <div className="flex-shrink-0">
           <Link href="/" className="inline-block">
             <Image
               src="/images/LogoT.png"
@@ -16,7 +17,9 @@ export default function Footer() {
             />
           </Link>
         </div>
-        <p className="text-white text-sm">
+
+        {/* Texto centralizado na tela */}
+        <p className="absolute left-1/2 transform -translate-x-1/2 text-sm">
           © 2025 VisView. All rights reserved.
         </p>
       </div>

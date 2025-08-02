@@ -43,7 +43,7 @@ export default async function CategoryPage({ params }: Props) {
               <h2 className="text-xl font-semibold text-primary mb-2">
                 {post.fields.title}
               </h2>
-              <p className="text-accent">
+              <p className="text-secondary">
                 {post.fields.excerpt || "No summary available."}
               </p>
             </div>

@@ -1,10 +1,15 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="bg-secondary py-2 shadow-md">
-      <div className="container mx-auto flex items-center justify-between h-16">
+      <div className="container mx-auto flex items-center justify-between h-16 px-4">
         {/* Logo */}
         <Link href="/">
           <Image
@@ -16,12 +21,28 @@ export default function Navbar() {
           />
         </Link>
 
+        {/* Hamburger */}
+        <button
+          className="text-white md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
         {/* Links */}
-        <ul className="flex space-x-6 text-white text-base font-medium items-center">
+        <ul
+          className={`md:flex md:space-x-6 md:items-center text-white text-base font-medium transition-all duration-300 
+          ${
+            isOpen
+              ? "block absolute top-16 left-0 w-full bg-secondary px-4 py-4 space-y-4 z-50"
+              : "hidden md:flex"
+          }`}
+        >
           <li>
             <Link
               href="/"
-              className="transition duration-300 hover:text-accent hover:underline underline-offset-4"
+              onClick={() => setIsOpen(false)}
+              className="hover:text-accent"
             >
               Home
             </Link>
@@ -29,7 +50,8 @@ export default function Navbar() {
           <li>
             <Link
               href="/about"
-              className="transition duration-300 hover:text-accent hover:underline underline-offset-4"
+              onClick={() => setIsOpen(false)}
+              className="hover:text-accent"
             >
               About
             </Link>
@@ -37,7 +59,8 @@ export default function Navbar() {
           <li>
             <Link
               href="/newsletter"
-              className="transition duration-300 hover:text-accent hover:underline underline-offset-4"
+              onClick={() => setIsOpen(false)}
+              className="hover:text-accent"
             >
               Newsletter
             </Link>
@@ -45,7 +68,8 @@ export default function Navbar() {
           <li>
             <Link
               href="/posts"
-              className="transition duration-300 hover:text-accent hover:underline underline-offset-4"
+              onClick={() => setIsOpen(false)}
+              className="hover:text-accent"
             >
               All Posts
             </Link>
