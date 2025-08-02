@@ -23,21 +23,21 @@ export default async function PostPage({ params }: Props) {
       <h1 className="text-4xl font-bold text-secondary mb-4">
         {post.fields.title}
       </h1>
-      <p className="text-accent mb-2">{post.fields.excerpt}</p>
+      <p className="text-secondary mb-2">{post.fields.excerpt}</p>
 
       {coverImageUrl && (
-        <div className="my-6">
+        <div className="w-full max-w-4xl mx-auto aspect-[2/1] relative my-6 overflow-hidden rounded-xl shadow-md">
           <Image
             src={`https:${coverImageUrl}`}
             alt={post.fields.title}
-            width={800}
-            height={400}
-            layout="responsive"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
       )}
 
-      <div className="prose prose-lg mt-6">
+      <div className="prose prose-lg prose-slate mt-6 max-w-none prose-headings:text-secondary prose-p:text-foreground prose-a:text-primary hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md">
         {documentToReactComponents(post.fields.content)}
       </div>
     </div>

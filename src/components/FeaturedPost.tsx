@@ -30,7 +30,7 @@ export default function FeaturedPost({
         </div>
         <div className="p-6 flex flex-col justify-center">
           <h2 className="text-2xl font-bold text-secondary mb-2">{title}</h2>
-          <p className="text-accent mb-4">{excerpt}</p>
+          <p className="text-secondary mb-4">{excerpt}</p>
           <Link href={`/blog/${slug}`}>
             <span className="inline-block bg-primary text-white py-2 px-4 rounded hover:bg-secondary transition">
               Read more

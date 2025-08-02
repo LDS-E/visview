@@ -20,7 +20,7 @@ export default async function AllPostsPage() {
               <h2 className="text-xl font-semibold text-primary mb-2">
                 {post.fields.title}
               </h2>
-              <p className="text-accent line-clamp-3">
+              <p className="text-secondary line-clamp-3">
                 {post.fields.excerpt || "No summary available."}
               </p>
             </div>

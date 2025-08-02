@@ -16,19 +16,22 @@ export default async function HomePage() {
             src="/images/herojpg.jpg"
             alt="Hero Image"
             fill
-            className="object-cover opacity-50"
+            className="object-cover opacity-50 rounded-md"
           />
         </div>
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl font-bold text-secondary">
+          <h1
+            className="text-5xl font-bold text-secondary text-shadow-lg
+          "
+          >
             Welcome to VisView
           </h1>
-          <p className="mt-4 text-lg text-accent">
+          <p className="mt-4 text-lg text-accent text-shadow-lg">
             A cozy space to explore motherhood, lifestyle, and inspiration.
           </p>
           <Link
             href="/newsletter"
-            className="mt-6 inline-block rounded-xl bg-secondary px-6 py-3 text-white hover:bg-opacity-80 transition"
+            className="mt-6 inline-block rounded-xl bg-secondary px-6 py-3 text-white hover:bg-opacity-80 transition text-shadow-lg"
           >
             Subscribe to Newsletter
           </Link>

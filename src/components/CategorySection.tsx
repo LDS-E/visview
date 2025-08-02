@@ -52,7 +52,7 @@ export default function CategorySection() {
               <h3 className="text-xl font-semibold text-primary">
                 {cat.title}
               </h3>
-              <p className="text-accent mt-1">{cat.description}</p>
+              <p className="text-secondary mt-1">{cat.description}</p>
             </div>
           </Link>
         ))}
