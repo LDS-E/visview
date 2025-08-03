@@ -10,7 +10,6 @@ export default function Navbar() {
   return (
     <nav className="bg-secondary py-2 shadow-md">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        {/* Logo */}
         <Link href="/">
           <Image
             src="/images/LogoT.png"
@@ -21,7 +20,6 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Hamburger */}
         <button
           className="text-white md:hidden"
           onClick={() => setIsOpen(!isOpen)}
@@ -29,7 +27,6 @@ export default function Navbar() {
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
-        {/* Links */}
         <ul
           className={`md:flex md:space-x-6 md:items-center text-white text-base font-medium transition-all duration-300 
           ${

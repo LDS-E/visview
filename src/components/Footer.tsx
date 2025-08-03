@@ -5,7 +5,6 @@ export default function Footer() {
   return (
     <footer className="bg-secondary py-4 text-white relative">
       <div className="container mx-auto px-4 flex items-center relative">
-        {/* Logo alinhado à esquerda */}
         <div className="flex-shrink-0">
           <Link href="/" className="inline-block">
             <Image
@@ -18,7 +17,6 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* Texto centralizado na tela */}
         <p className="absolute left-1/2 transform -translate-x-1/2 text-sm">
           © 2025 VisView. All rights reserved.
         </p>
