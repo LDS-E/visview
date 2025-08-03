@@ -1,17 +1,40 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function NewsletterPage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
-    console.log({ name, email });
+    const { data, error } = await supabase.from("newsletter").insert([
+      {
+        name,
+        email,
+      },
+    ]);
+
+    if (error) {
+      if (
+        error.code === "23505" || // code violation UNIQUE PostgreSQL
+        error.message.toLowerCase().includes("duplicate")
+      ) {
+        setError("This email is already registered.");
+      } else {
+        setError("Error registering. Please try again.");
+      }
+      return;
+    }
+
     setSubmitted(true);
+    setName("");
+    setEmail("");
   };
 
   return (
@@ -51,6 +74,8 @@ export default function NewsletterPage() {
               required
             />
           </div>
+
+          {error && <p className="text-red-600 text-sm font-medium">{error}</p>}
 
           <button
             type="submit"
