@@ -1,4 +1,3 @@
-// src/app/posts/page.tsx
 import { fetchPosts } from "@/lib/contentful";
 import Link from "next/link";
 
