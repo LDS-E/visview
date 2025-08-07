@@ -1,3 +1,4 @@
+import { Document } from "@contentful/rich-text-types";
 export interface BlogPost {
   sys: {
     id: string;
@@ -14,6 +15,6 @@ export interface BlogPost {
         };
       };
     };
-    content?: any;
+    content?: Document;
   };
 }
