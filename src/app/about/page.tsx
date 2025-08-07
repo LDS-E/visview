@@ -19,7 +19,7 @@ export default function AboutPage() {
         This blog was born from the desire to express, connect, and inspire — to
         create a digital corner where ideas flow freely and experiences are
         celebrated. From heartfelt stories to tips and discoveries, VisView is
-        more than a blog — it’s a perspective.
+        more than a blog — it&rsquo;s a perspective.
       </p>
 
       <p className="text-lg text-gray-700 leading-relaxed">
