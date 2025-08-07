@@ -33,6 +33,13 @@ export async function POST(req: Request) {
 
     return Response.json({ success: true, sent: data });
   } catch (err) {
-    return Response.json({ success: false, error: (err as any).message });
+    let errorMessage = "An unknown error occurred.";
+    if (err instanceof Error) {
+      errorMessage = err.message;
+    } else if (typeof err === "string") {
+      errorMessage = err;
+    }
+
+    return Response.json({ success: false, error: errorMessage });
   }
 }

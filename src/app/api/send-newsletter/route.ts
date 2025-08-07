@@ -35,17 +35,27 @@ export async function POST() {
       to: recipientList,
       subject: "New post published on VisView!",
       html: `
-        <h1>🎉 We have news on the blog!</h1>
-        <p>A new post was recently published.</p>
-        <p><a href="https://seublog.com/posts">Click here to check</a></p>
-      `,
+         <h1>🎉 We have news on the blog!</h1>
+         <p>A new post was recently published.</p>
+         <p><a href="https://seublog.com/posts">Click here to check</a></p>
+       `,
     });
 
     return NextResponse.json({ success: true, data: emailResponse });
-  } catch (e: any) {
-    console.error("Error sending email:", e);
+  } catch (err) {
+    console.error("Error sending email:", err);
+
+    // Abordagem segura para tratar o erro sem usar 'any'
+    let errorMessage = "An unknown error occurred.";
+    if (err instanceof Error) {
+      errorMessage = err.message;
+    } else if (typeof err === "object" && err !== null && "message" in err) {
+      // Caso o erro não seja uma instância de Error, mas tenha uma propriedade 'message'
+      errorMessage = (err as { message: string }).message;
+    }
+
     return NextResponse.json(
-      { success: false, message: e.message },
+      { success: false, message: errorMessage },
       { status: 500 }
     );
   }
