@@ -7,5 +7,13 @@ export interface BlogPost {
     slug: string;
     excerpt?: string;
     category?: string;
+    coverImage?: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+    content?: any;
   };
 }
