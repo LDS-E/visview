@@ -1,11 +1,19 @@
-export interface BlogPost {
-  sys: {
-    id: string;
+import { Entry } from "contentful";
+import { Document } from "@contentful/rich-text-types";
+
+export interface BlogPostFields {
+  title: string;
+  slug: string;
+  excerpt?: string;
+  category?: string;
+  coverImage?: {
+    fields: {
+      file: {
+        url: string;
+      };
+    };
   };
-  fields: {
-    title: string;
-    slug: string;
-    excerpt?: string;
-    category?: string;
-  };
+  content?: Document;
 }
+
+export type BlogPost = Entry<BlogPostFields>;

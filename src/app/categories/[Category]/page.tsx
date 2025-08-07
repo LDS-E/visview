@@ -3,14 +3,12 @@ import Link from "next/link";
 import { BlogPost } from "@/types/blogpost";
 import { notFound } from "next/navigation";
 
-type Props = {
-  params: {
-    Category: string;
-  };
-};
-
-export default async function CategoryPage({ params }: Props) {
-  const { Category } = params;
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ Category: string }>;
+}) {
+  const { Category } = await params;
 
   if (!Category) {
     return notFound();

@@ -2,20 +2,18 @@ import { notFound } from "next/navigation";
 import { fetchPosts } from "@/lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
-import { BlogPost } from "@/types/blogpost"; // Importa a interface
+import { BlogPost } from "@/types/blogpost";
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-export default async function PostPage({ params }: Props) {
-  // Tipa o array `posts` com a interface `BlogPost`
   const posts: BlogPost[] = await fetchPosts();
 
-  // O 'find' agora sabe o tipo do 'post'
-  const post = posts.find((post) => post.fields.slug === params.slug);
+  const post = posts.find((post) => post.fields.slug === slug);
 
   if (!post) return notFound();
 
