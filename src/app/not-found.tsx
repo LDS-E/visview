@@ -8,7 +8,7 @@ export default function NotFound() {
         Oops! This page wandered off the map. 🚀
       </p>
       <p className="mt-2 text-gray-500">
-        We couldn’t find what you were looking for.
+        We couldn&rsquo;t find what you were looking for.
       </p>
       <Link
         href="/"

@@ -19,11 +19,11 @@ export default async function CategoryPage({ params }: Props) {
 
   console.log("Categoria da URL válida:", Category);
 
-  if (!category) {
+  if (!Category) {
     return notFound();
   }
 
-  const normalizedCategory = category.replace(/-/g, " ").toLowerCase();
+  const normalizedCategory = Category.replace(/-/g, " ").toLowerCase();
   const posts: BlogPost[] = await fetchPosts();
 
   const filteredPosts = posts.filter((post) => {
