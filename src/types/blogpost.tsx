@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   sys: {
     id: string;
@@ -7,6 +6,6 @@ export interface BlogPost {
     title: string;
     slug: string;
     excerpt?: string;
-    category?: string; // Propriedade opcional, pois nem todos os posts podem ter.
+    category?: string;
   };
 }

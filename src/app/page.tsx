@@ -4,9 +4,11 @@ import { fetchPosts } from "@/lib/contentful";
 import PostCard from "../components/PostCard";
 import FeaturedPost from "@/components/FeaturedPost";
 import CategorySection from "@/components/CategorySection";
+import { BlogPost } from "@/types/blogpost"; // Importa a interface
 
 export default async function HomePage() {
-  const posts = await fetchPosts();
+  // Tipa o array `posts` com a interface `BlogPost`
+  const posts: BlogPost[] = await fetchPosts();
 
   return (
     <div>
@@ -53,14 +55,18 @@ export default async function HomePage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
-            {posts.map((post: any) => (
-              <Link key={post.sys.id} href={`/blog/${post.fields.slug}`}>
-                <PostCard
-                  title={post.fields.title}
-                  excerpt={post.fields.excerpt}
-                />
-              </Link>
-            ))}
+            {posts.map(
+              (
+                post // O 'map' agora sabe o tipo do 'post'
+              ) => (
+                <Link key={post.sys.id} href={`/blog/${post.fields.slug}`}>
+                  <PostCard
+                    title={post.fields.title}
+                    excerpt={post.fields.excerpt}
+                  />
+                </Link>
+              )
+            )}
           </div>
         </div>
       </section>
