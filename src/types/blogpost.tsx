@@ -1,3 +1,4 @@
+
 export interface BlogPost {
   sys: {
     id: string;
