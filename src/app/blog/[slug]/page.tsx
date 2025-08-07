@@ -4,12 +4,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Image from "next/image";
 import { BlogPost } from "@/types/blogpost"; // Importa a interface
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
 export default async function PostPage({ params }: Props) {
   // Tipa o array `posts` com a interface `BlogPost`
   const posts: BlogPost[] = await fetchPosts();
