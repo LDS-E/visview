@@ -1,4 +1,4 @@
-// src/types/blogpost.ts
+
 export interface BlogPost {
   sys: {
     id: string;
