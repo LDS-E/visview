@@ -1,19 +1,24 @@
 import { fetchPosts } from "@/lib/contentful";
 import Link from "next/link";
 import { BlogPost } from "@/types/blogpost";
-import { notFound } from "next/navigation"; // Importa a função notFound
+import { notFound } from "next/navigation"; //
+
 
 type Props = {
   params: {
-    category: string;
-  };
+    Category: string; 
 };
 
 export default async function CategoryPage({ params }: Props) {
-  const { category } = params;
+  
+  const { Category } = params; 
 
-  // Adiciona a verificação para garantir que a categoria existe.
-  // Se não existir, retorna a página not-found do Next.js.
+  if (!Category) {
+    return notFound();
+  }
+
+  console.log("Categoria da URL válida:", Category);
+
   if (!category) {
     return notFound();
   }
@@ -25,6 +30,8 @@ export default async function CategoryPage({ params }: Props) {
     const postCategory = post.fields.category?.toLowerCase();
     return postCategory === normalizedCategory;
   });
+
+  console.log("Número de posts filtrados:", filteredPosts.length); // LOG 4
 
   if (filteredPosts.length === 0) {
     return (
@@ -47,7 +54,7 @@ export default async function CategoryPage({ params }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md|grid-cols-3 gap-6">
         {filteredPosts.map(
           (
-            post // O 'map' também sabe o tipo do 'post'
+            post 
           ) => (
             <Link key={post.sys.id} href={`/blog/${post.fields.slug}`}>
               <div className="bg-white p-6 rounded-xl shadow hover:shadow-md transition cursor-pointer">
