@@ -13,7 +13,11 @@ export default function NewsletterPage() {
     e.preventDefault();
     setError("");
 
-    const { data, error } = await supabase.from("newsletter").insert([
+    // O erro 'data' is assigned a value but never used. @typescript-eslint/no-unused-vars
+    // acontece porque a variável 'data' é desestruturada, mas não é utilizada depois.
+    // Como você só precisa do 'error' para a lógica de tratamento de erros,
+    // podemos remover 'data' da desestruturação.
+    const { error } = await supabase.from("newsletter").insert([
       {
         name,
         email,
