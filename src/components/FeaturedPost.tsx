@@ -6,14 +6,12 @@ import Image from "next/image";
 type FeaturedPostProps = {
   title: string;
   excerpt: string;
-  imageUrl: string;
   slug: string;
 };
 
 export default function FeaturedPost({
   title,
   excerpt,
-  imageUrl,
   slug,
 }: FeaturedPostProps) {
   return (
