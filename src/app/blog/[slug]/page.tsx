@@ -13,7 +13,7 @@ export default async function PostPage({
 
   const posts: BlogPost[] = await fetchPosts();
 
-  const post = posts.find((post) => post.fields.slug === slug);
+  const post = posts.find((post) => post.fields && post.fields.slug === slug);
 
   if (!post) return notFound();
 
