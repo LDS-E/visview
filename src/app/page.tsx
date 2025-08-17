@@ -1,3 +1,5 @@
+// src/app/page.tsx
+
 import Image from "next/image";
 import { fetchPosts } from "@/lib/contentful";
 import PostCard from "../components/PostCard";
@@ -7,6 +9,9 @@ import { BlogPost } from "@/types/blogpost";
 
 export default async function HomePage() {
   const posts: BlogPost[] = await fetchPosts();
+
+  // Encontre o post em destaque, que você marcou no Contentful
+  const featuredPost = posts.find((post) => post.fields.isFeatured === true);
 
   return (
     <div>
@@ -38,12 +43,14 @@ export default async function HomePage() {
 
       {/* FEATURED POST */}
       <section>
-        <FeaturedPost
-          title="featured post"
-          excerpt="Important post of the month"
-          slug="first-steps-into-motherhood"
-          imageUrl="/images/sample1.jpg"
-        />
+        {featuredPost && (
+          <FeaturedPost
+            title={featuredPost.fields.title}
+            excerpt={featuredPost.fields.excerpt}
+            slug={featuredPost.fields.slug}
+            imageUrl={featuredPost.fields.coverImage?.fields.file.url}
+          />
+        )}
       </section>
 
       {/* RECENT POSTS */}

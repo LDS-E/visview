@@ -16,12 +16,17 @@ export default function PostCard({
   slug,
   imageUrl,
 }: PostCardProps) {
+  const finalImageUrl = imageUrl
+    ? imageUrl.startsWith("//")
+      ? `https:${imageUrl}`
+      : imageUrl
+    : "";
   return (
     <div className="bg-white rounded-xl shadow hover:shadow-md transition cursor-pointer overflow-hidden">
-      {imageUrl && (
+      {finalImageUrl && (
         <div className="relative w-full h-48">
           <Image
-            src={imageUrl.startsWith("http") ? imageUrl : `https:${imageUrl}`}
+            src={finalImageUrl}
             alt={title}
             fill
             className="object-cover"
