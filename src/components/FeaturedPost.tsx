@@ -1,40 +1,49 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-type FeaturedPostProps = {
+interface PostCardProps {
   title: string;
-  excerpt: string;
+  excerpt?: string;
   slug: string;
-};
+  imageUrl?: string;
+}
 
-export default function FeaturedPost({
+export default function PostCard({
   title,
   excerpt,
   slug,
-}: FeaturedPostProps) {
+  imageUrl,
+}: PostCardProps) {
+  const finalImageUrl = imageUrl
+    ? imageUrl.startsWith("//")
+      ? `https:${imageUrl}`
+      : imageUrl
+    : "";
   return (
-    <div className="relative w-full max-w-5xl mx-auto my-12 shadow-lg rounded-2xl overflow-hidden bg-white">
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="relative h-72 md:h-auto">
+    <div className="bg-white rounded-xl shadow hover:shadow-md transition cursor-pointer overflow-hidden">
+      {finalImageUrl && (
+        <div className="relative w-full h-48">
           <Image
-            src="/images/motherhood.webp"
+            src={finalImageUrl}
             alt={title}
             fill
             className="object-cover"
-            priority
           />
         </div>
-        <div className="p-6 flex flex-col justify-center">
-          <h2 className="text-2xl font-bold text-secondary mb-2">{title}</h2>
-          <p className="text-secondary mb-4">{excerpt}</p>
-          <Link href={`/blog/${slug}`}>
-            <span className="inline-block bg-primary text-white py-2 px-4 rounded hover:bg-secondary transition">
-              Read more
-            </span>
-          </Link>
-        </div>
+      )}
+      <div className="p-6 flex flex-col justify-between h-full">
+        <h2 className="text-xl font-semibold text-primary mb-2">{title}</h2>
+        <p className="text-secondary mb-4 line-clamp-3">
+          {excerpt || "No summary available."}
+        </p>
+        <Link
+          href={`/blog/${slug}`}
+          className="mt-auto text-sm text-primary font-medium hover:underline"
+        >
+          Read more →
+        </Link>
       </div>
     </div>
   );

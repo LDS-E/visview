@@ -1,4 +1,7 @@
+// src/lib/contentful.ts
+
 import { createClient } from "contentful";
+import { BlogPost } from "@/types/blogpost";
 
 export const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -6,6 +9,6 @@ export const client = createClient({
 });
 
 export async function fetchPosts() {
-  const entries = await client.getEntries({ content_type: "post" });
+  const entries = await client.getEntries<BlogPost>({ content_type: "post" });
   return entries.items;
 }

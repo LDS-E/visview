@@ -6,9 +6,9 @@ import { notFound } from "next/navigation";
 export default async function CategoryPage({
   params,
 }: {
-  params: Promise<{ Category: string }>;
+  params: { Category: string };
 }) {
-  const { Category } = await params;
+  const { Category } = params;
 
   if (!Category) {
     return notFound();

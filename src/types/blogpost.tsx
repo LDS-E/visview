@@ -14,6 +14,7 @@ export interface BlogPostFields {
     };
   };
   content?: Document;
+  isFeatured?: boolean;
 }
 
 export type BlogPost = Entry<BlogPostFields>;
