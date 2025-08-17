@@ -1,4 +1,5 @@
 import { createClient } from "contentful";
+import { BlogPost } from "@/types/blogpost";
 
 export const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
