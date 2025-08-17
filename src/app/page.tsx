@@ -10,7 +10,6 @@ import { BlogPost } from "@/types/blogpost";
 export default async function HomePage() {
   const posts: BlogPost[] = await fetchPosts();
 
-  // Encontre o post em destaque, que você marcou no Contentful
   const featuredPost = posts.find((post) => post.fields.isFeatured === true);
 
   return (
