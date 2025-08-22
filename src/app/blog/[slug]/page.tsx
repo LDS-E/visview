@@ -1,3 +1,5 @@
+// src/app/blog/[slug]/page.tsx
+
 import { notFound } from "next/navigation";
 import { fetchPosts } from "@/lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -13,9 +15,12 @@ export default async function PostPage({
 
   const posts: BlogPost[] = await fetchPosts();
 
-  const post = posts.find((post) => post.fields?.slug === slug);
+  // New fix: Use an explicit type assertion
+  const post = posts.find((p) => (p as BlogPost).fields.slug === slug);
 
-  if (!post) return notFound();
+  if (!post) {
+    return notFound();
+  }
 
   const coverImageUrl = post.fields.coverImage?.fields?.file?.url;
 
