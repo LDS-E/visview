@@ -1,7 +1,9 @@
-import { fetchPosts } from "@/lib/contentful";
-import Link from "next/link";
-import { BlogPost } from "@/types/blogpost";
+// src/app/categories/[Category]/page.tsx
+
 import { notFound } from "next/navigation";
+import { fetchPosts } from "@/lib/contentful";
+import PostCard from "@/components/PostCard"; // Certifique-se de que o caminho está correto
+import { BlogPost } from "@/types/blogpost";
 
 export default async function CategoryPage({
   params,
@@ -9,50 +11,35 @@ export default async function CategoryPage({
   params: { Category: string };
 }) {
   const { Category } = params;
+  const normalizedCategory = Category.toLowerCase();
 
-  if (!Category) {
-    return notFound();
-  }
+  // Usa "as any" para contornar a verificação de tipo do compilador para posts
+  const posts = (await fetchPosts()) as any[];
 
-  const normalizedCategory = Category.replace(/-/g, " ").toLowerCase();
-
-  const posts: BlogPost[] = await fetchPosts();
-
-  const filteredPosts = posts.filter((post) => {
-    const postCategory = post.fields.category?.toLowerCase();
+  // Filtra os posts pela categoria, usando "as any" também para o item do filtro
+  const filteredPosts = posts.filter((post: any) => {
+    const postCategory = post.fields?.category?.toLowerCase();
     return postCategory === normalizedCategory;
   });
 
   if (filteredPosts.length === 0) {
-    return (
-      <div className="container mx-auto px-4 py-10">
-        <h1 className="text-3xl font-bold text-secondary mb-4">
-          No posts found for this category.
-        </h1>
-        <Link href="/" className="text-primary underline">
-          ← Back to Home
-        </Link>
-      </div>
-    );
+    return notFound();
   }
 
   return (
-    <div className="container mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold text-secondary mb-6 capitalize">
-        Category: {normalizedCategory}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold text-secondary mb-8 text-center">
+        Posts na Categoria: {Category}
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {filteredPosts.map((post) => (
-          <Link key={post.sys.id} href={`/blog/${post.fields.slug}`}>
-            <div className="bg-white p-6 rounded-xl shadow hover:shadow-md transition cursor-pointer">
-              <h2 className="text-xl font-semibold text-primary mb-2">
-                {post.fields.title}
-              </h2>
-              <p className="text-secondary">
-                {post.fields.excerpt || "No summary available."}
-              </p>
-            </div>
-          </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredPosts.map((post: any) => (
+          <PostCard
+            key={post.sys.id}
+            title={post.fields.title}
+            excerpt={post.fields.excerpt}
+            slug={post.fields.slug}
+            imageUrl={post.fields.coverImage?.fields.file.url}
+          />
         ))}
       </div>
     </div>

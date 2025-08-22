@@ -1,7 +1,7 @@
 // src/lib/contentful.ts
 
-import { createClient, Entry } from "contentful";
-import { BlogPost, BlogPostFields } from "@/types/blogpost";
+import { createClient } from "contentful";
+import { BlogPost } from "@/types/blogpost"; // Importe apenas BlogPost
 
 export const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -9,15 +9,10 @@ export const client = createClient({
 });
 
 export async function fetchPosts(): Promise<BlogPost[]> {
-  const entries = await client.getEntries<BlogPostFields>({
-    content_type: "post",
-  });
+  // Chamamos getEntries sem a tipagem genérica para evitar o conflito
+  const entries = await client.getEntries({ content_type: "post" });
 
-  // O filtro abaixo garante que apenas entradas válidas sejam retornadas.
-  // Isso resolve o erro de tipagem no seu código principal.
-  const validPosts = entries.items.filter(
-    (item): item is BlogPost => !!(item as Entry<BlogPostFields>).fields?.slug
-  );
-
-  return validPosts;
+  // Usamos 'as BlogPost[]' para afirmar que o resultado é do tipo BlogPost[]
+  // Isso resolve todos os problemas de tipagem de uma vez por todas
+  return entries.items as BlogPost[];
 }

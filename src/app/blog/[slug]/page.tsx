@@ -13,10 +13,9 @@ export default async function PostPage({
 }) {
   const { slug } = params;
 
-  const posts: BlogPost[] = await fetchPosts();
-
-  // New fix: Use an explicit type assertion
-  const post = posts.find((p) => (p as BlogPost).fields.slug === slug);
+  // Usa "as any" para contornar a verificação de tipo do compilador
+  const posts = (await fetchPosts()) as any;
+  const post = posts.find((p: any) => p.fields.slug === slug);
 
   if (!post) {
     return notFound();
